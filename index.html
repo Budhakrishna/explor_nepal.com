@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Nepal - Himalayan Treasures</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2a5c8d;
+            --secondary: #e74c3c;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --accent: #f39c12;
+            --text: #333;
+            --text-light: #777;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255,255,255,0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255,255,255,0.98);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Header */
+        .header {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('image/header-bg.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary);
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+        }
+        
+        /* Map Section */
+        .map-section {
+            background-color: white;
+        }
+        
+        .map-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Destination Gallery */
+        .destination-gallery {
+            background-color: var(--light);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .card-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover .card-image img {
+            transform: scale(1.1);
+        }
+        
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            padding: 20px;
+        }
+        
+        .card:hover .card-overlay {
+            opacity: 1;
+        }
+        
+        .overlay-content {
+            text-align: center;
+            color: white;
+        }
+        
+        .overlay-content h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .overlay-content h3 i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .overlay-content p {
+            margin-bottom: 20px;
+        }
+        
+        .explore-button {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .explore-button:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Provinces Section */
+        .provinces-section {
+            background-color: white;
+        }
+        
+        .provinces-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .province-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .province-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .province-card a {
+            text-decoration: none;
+            color: var(--text);
+            display: block;
+            padding: 25px;
+        }
+        
+        .province-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .province-card p {
+            margin-bottom: 10px;
+        }
+        
+        .province-card p strong {
+            color: var(--dark);
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 16px;
+        }
+        
+        .newsletter-form button {
+            padding: 12px 25px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--light);
+            padding: 80px 0;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-form button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .contact-form button:hover {
+            background-color: #1c4b7d;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .footer p {
+            margin-bottom: 0;
+        }
+        
+        .footer i {
+            color: var(--secondary);
+            margin: 0 5px;
+        }
+        
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        #back-to-top:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.5s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 50px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-form button {
+                border-radius: 50px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo"><i class="fas fa-mountain"></i>Explore Nepal</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#map">Map</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="home" class="header">
+        <div class="header-content">
+            <h1>Discover Nepal's Hidden Treasures</h1>
+            <p>Explore the majestic beauty of the Himalayas and rich cultural heritage</p>
+            <a href="#destinations" class="cta-button">Explore Now</a>
+        </div>
+    </header>
+
+    <!-- Map Section -->
+    <section id="map" class="section map-section">
+        <div class="container">
+            <h2 class="section-title">Explore Nepal on Map</h2>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/d/embed?mid=1gruRLdJIcx0j7Zm00UKBNZ2MjR-Q6DI&ehbc=2E312F" 
+                    width="640" 
+                    height="480" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="destinations" class="section destination-gallery">
+        <div class="container">
+            <h2 class="section-title">Top Destinations</h2>
+            <div class="gallery-grid">
+                <!-- Talcha Airport -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="image/20180906_095331.jpg" alt="Talcha Airport" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h3><i class="fas fa-mountain"></i> Talcha Airport</h3>
+                                <p>Situated at 2735 meters in Mugu district, this airport is the gateway to Rara Lake. Experience breathtaking Himalayan views during landing.</p>
+                                <a href="provinces/karnali.html" class="explore-button">Explore More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kathmandu Valley -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="image/20190124_174242.jpg" alt="Kathmandu Valley" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h3><i class="fas fa-university"></i> Kathmandu Valley</h3>
+                                <p>Explore ancient temples and UNESCO sites in Nepal's cultural heart. Discover spiritual heritage at Swayambhunath and Pashupatinath.</p>
+                                <a href="provinces/bagmati.html" class="explore-button">Explore More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boudha Stupa -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="image/IMG_20200222_144133.jpg" alt="Boudha Stupa" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h3><i class="fas fa-peace"></i> Boudha Stupa</h3>
+                                <p>One of the largest spherical stupas in Nepal, a center of Tibetan Buddhism with mesmerizing architecture and spiritual ambiance.</p>
+                                <a href="provinces/bagmati.html" class="explore-button">Explore More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mugu District -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="image/20180903_101734.JPG" alt="Mugu District" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h3><i class="fas fa-hiking"></i> Mugu District</h3>
+                                <p>Remote wilderness area featuring Nepal's largest lake (Rara) and pristine Himalayan landscapes perfect for adventure seekers.</p>
+                                <a href="provinces/karnali.html" class="explore-button">Explore More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rara Lake -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="image/maxresdefault.jpg" alt="Rara Lake" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h3><i class="fas fa-lake"></i> Rara Lake</h3>
+                                <p>Crystal-clear alpine lake surrounded by pine forests and snow-capped peaks. Ideal for trekking and nature photography.</p>
+                                <a href="provinces/karnali.html" class="explore-button">Explore More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Provinces Section -->
+            <div class="provinces-section">
+                <h2 class="section-title">Nepal's Seven Provinces</h2>
+                <div class="provinces-grid">
+                    <!-- Province 1 -->
+                    <div class="province-card">
+                        <a href="provinces/koshi.html">
+                            <h3>Province 1</h3>
+                            <p><strong>Capital:</strong> Biratnagar</p>
+                            <p><strong>Major Cities:</strong> Dharan, Itahari, Damak</p>
+                            <p><strong>Highlights:</strong> Mount Kanchenjunga, Koshi Tappu Wildlife Reserve, Baraha Chhetra</p>
+                        </a>
+                    </div>
+
+                    <!-- Province 2 -->
+                    <div class="province-card">
+                        <a href="provinces/madesh.html">
+                            <h3>Province 2</h3>
+                            <p><strong>Capital:</strong> Janakpur</p>
+                            <p><strong>Major Cities:</strong> Birgunj, Rajbiraj, Kalaiya</p>
+                            <p><strong>Highlights:</strong> Janaki Temple, Chure Hills, Gadhimai Festival</p>
+                        </a>
+                    </div>
+
+                    <!-- Bagmati Province -->
+                    <div class="province-card">
+                        <a href="provinces/bagmati.html">
+                            <h3>Bagmati Province</h3>
+                            <p><strong>Capital:</strong> Hetauda</p>
+                            <p><strong>Major Cities:</strong> Kathmandu, Lalitpur, Bhaktapur</p>
+                            <p><strong>Highlights:</strong> Kathmandu Valley, Chitwan National Park, Langtang National Park</p>
+                        </a>
+                    </div>
+
+                    <!-- Gandaki Province -->
+                    <div class="province-card">
+                        <a href="provinces/lumbini.html">
+                            <h3>Gandaki Province</h3>
+                            <p><strong>Capital:</strong> Pokhara</p>
+                            <p><strong>Major Cities:</strong> Lekhnath, Gorkha, Baglung</p>
+                            <p><strong>Highlights:</strong> Annapurna Range, Phewa Lake, Manaslu Circuit</p>
+                        </a>
+                    </div>
+
+                    <!-- Lumbini Province -->
+                    <div class="province-card">
+                        <a href="provinces/lumbini.html">
+                            <h3>Lumbini Province</h3>
+                            <p><strong>Capital:</strong> Deukhuri</p>
+                            <p><strong>Major Cities:</strong> Butwal, Siddharthanagar, Tansen</p>
+                            <p><strong>Highlights:</strong> Lumbini (Birthplace of Buddha), Tilaurakot, Bardia National Park</p>
+                        </a>
+                    </div>
+
+                    <!-- Karnali Province -->
+                    <div class="province-card">
+                        <a href="provinces/karnali.html">
+                            <h3>Karnali Province</h3>
+                            <p><strong>Capital:</strong> Birendranagar</p>
+                            <p><strong>Major Cities:</strong> Surkhet, Jumla, Dailekh</p>
+                            <p><strong>Highlights:</strong> Rara Lake, Shey Phoksundo National Park, Karnali River</p>
+                        </a>
+                    </div>
+
+                    <!-- Sudurpashchim Province -->
+                    <div class="province-card">
+                        <a href="provinces/sudurpaschim.html">
+                            <h3>Sudurpashchim Province</h3>
+                            <p><strong>Capital:</strong> Godawari</p>
+                            <p><strong>Major Cities:</strong> Dhangadhi, Mahendranagar, Tikapur</p>
+                            <p><strong>Highlights:</strong> Khaptad National Park, Shuklaphanta National Park, Badimalika Temple</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Explore Nepal | Crafted with <i class="fas fa-heart"></i> by Travel Enthusiasts</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+        
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.querySelector('.preloader');
+            preloader.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

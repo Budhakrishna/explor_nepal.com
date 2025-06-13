@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koshi Province - Discover Nepal's Hidden Treasures</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script defer src="../script.js"></script>
+    <style>
+        /* Custom Styles for Koshi Province Page */
+        body {
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .section ul li:hover {
+            background: #e0f7fa;
+        }
+
+        .section ul li strong {
+            color: #e74c3c;
+        }
+
+        .image-gallery {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .gallery-item {
+            flex: 1 1 calc(33.333% - 30px);
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .gallery-item:hover .caption {
+            opacity: 1;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #2980b9;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+            border-top: 5px solid #3498db;
+        }
+
+        .footer i {
+            color: #e74c3c;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        #back-to-top:hover {
+            background-color: #2980b9;
+        }
+
+        /* Lightbox Override */
+        .lightbox-overlay {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-image {
+            border-radius: 10px;
+        }
+
+        /* Map Section */
+        #map {
+            height: 500px;
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Explore Nepal</div>
+        <ul class="nav-links">
+            <li><a href="../index.html#home">Home</a></li>
+            <li><a href="../index.html#destinations">Destinations</a></li>
+            <li><a href="../index.html#map">Map</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="header parallax" style="background-image: url('../image/koshi-bg.jpg');">
+        <div class="header-content animate__animated animate__fadeIn">
+            <h1>Koshi Province</h1>
+            <p>Discover Nepal's Hidden Treasures</p>
+        </div>
+    </header>
+
+    <!-- Google Imagery Map Section -->
+    <section class="section animate__animated animate__fadeInUp">
+        <h2>Explore Koshi Province</h2>
+        <iframe
+            id="map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.102370777523!2d87.27160931504398!3d26.84109608316068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ef41d9a6d5f7c1%3A0x3b9f3b3b3b3b3b3b!2sKoshi%20Province%2C%20Nepal!5e0!3m2!1sen!2snp!4v1621234567890!5m2!1sen!2snp"
+            width="100%"
+            height="500"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+    </section>
+
+    <!-- Province Details Section -->
+    <section class="province-detail">
+        <!-- Back Button -->
+        <a href="../index.html#destinations" class="back-button animate__animated animate__fadeInLeft">
+            <i class="fas fa-arrow-left"></i> Back to Destinations
+        </a>
+
+        <!-- Geography Section -->
+        <div class="section animate__animated animate__fadeInUp">
+            <h2>Geography</h2>
+            <p>
+                Koshi Province is located in the eastern part of Nepal. It is bordered by Tibet Autonomous Region of China to the north, the Indian states of Sikkim and West Bengal to the east, and Province 2 and Bagmati Province to the west. The province covers an area of 25,905 km² and is characterized by diverse geographical features, including the Himalayan range in the north, the Mahabharat Range in the middle, and the Terai plains in the south.
+            </p>
+        </div>
+
+        <!-- Districts Section -->
+        <div class="section animate__animated animate__fadeInUp">
+            <h2>Districts</h2>
+            <p>
+                Koshi Province is divided into 14 districts. Each district has its unique cultural and geographical significance:
+            </p>
+            <ul>
+                <li><strong>Bhojpur:</strong> Known for its terraced fields and traditional farming practices.</li>
+                <li><strong>Dhankuta:</strong> A hill district with rich cultural heritage and scenic beauty.</li>
+                <li><strong>Ilam:</strong> Famous for its tea gardens and panoramic views of the Himalayas.</li>
+                <li><strong>Jhapa:</strong> A Terai district known for its agricultural productivity and diverse communities.</li>
+                <li><strong>Khotang:</strong> A remote district with stunning landscapes and traditional Rai culture.</li>
+                <li><strong>Morang:</strong> An industrial hub with a mix of urban and rural areas.</li>
+                <li><strong>Okhaldhunga:</strong> A mountainous district with historical significance.</li>
+                <li><strong>Panchthar:</strong> Known for its cardamom production and cultural diversity.</li>
+                <li><strong>Sankhuwasabha:</strong> Home to Mount Makalu and the Arun Valley.</li>
+                <li><strong>Solukhumbu:</strong> The gateway to Mount Everest and the Sherpa culture.</li>
+                <li><strong>Sunsari:</strong> A Terai district with the Koshi Tappu Wildlife Reserve.</li>
+                <li><strong>Taplejung:</strong> Known for Mount Kanchenjunga and its pristine natural beauty.</li>
+                <li><strong>Terhathum:</strong> A small district with lush green hills and cultural festivals.</li>
+                <li><strong>Udayapur:</strong> A district with a mix of hills and plains, known for its religious sites.</li>
+            </ul>
+        </div>
+
+        <!-- Mountains Section -->
+        <div class="section animate__animated animate__fadeInUp">
+            <h2>Mountains</h2>
+            <p>
+                Koshi Province is home to some of the highest peaks in the world, including:
+            </p>
+            <ul>
+                <li>
+                    <strong>Mount Kanchenjunga (8,586 m):</strong> The third highest peak in the world, located in Taplejung District. It was first climbed in 1955 by Joe Brown and George Band.
+                </li>
+                <li>
+                    <strong>Mount Makalu (8,485 m):</strong> The fifth highest peak in the world, located in Sankhuwasabha District. It was first climbed in 1955 by Lionel Terray and Jean Couzy.
+                </li>
+                <li>
+                    <strong>Mount Everest (8,848 m):</strong> The highest peak in the world, located in Solukhumbu District. It was first climbed in 1953 by Sir Edmund Hillary and Tenzing Norgay Sherpa.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Rivers Section -->
+        <div class="section animate__animated animate__fadeInUp">
+            <h2>Rivers</h2>
+            <p>
+                Koshi Province is rich in water resources, with several major rivers flowing through it:
+            </p>
+            <ul>
+                <li>
+                    <strong>Koshi River:</strong> Also known as the "Sorrow of Bihar," it is one of the largest rivers in Nepal. It originates from the Himalayas and flows through Sunsari and Saptari districts.
+                </li>
+                <li>
+                    <strong>Arun River:</strong> A major tributary of the Koshi River, it flows through Sankhuwasabha and Bhojpur districts.
+                </li>
+                <li>
+                    <strong>Tamor River:</strong> Another tributary of the Koshi River, it flows through Taplejung and Panchthar districts.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Culture Section -->
+        <div class="section animate__animated animate__fadeInUp">
+            <h2>Culture, Castes, and Religions</h2>
+            <p>
+                Koshi Province is a melting pot of cultures, castes, and religions. The major ethnic groups include the Rai, Limbu, Sherpa, Newar, Brahmin, Chhetri, and Madhesi communities. Each group has its unique traditions, festivals, and religious practices:
+            </p>
+            <ul>
+                <li>
+                    <strong>Rai and Limbu:</strong> Indigenous communities with rich cultural heritage, known for their traditional dances like Sakela and Chyabrung.
+                </li>
+                <li>
+                    <strong>Sherpa:</strong> Known for their mountaineering skills and Buddhist traditions. They celebrate festivals like Losar and Mani Rimdu.
+                </li>
+                <li>
+                    <strong>Newar:</strong> Known for their intricate art and architecture, and festivals like Indra Jatra and Bisket Jatra.
+                </li>
+                <li>
+                    <strong>Brahmin and Chhetri:</strong> Follow Hindu traditions and celebrate festivals like Dashain and Tihar.
+                </li>
+                <li>
+                    <strong>Madhesi:</strong> Primarily located in the Terai region, they celebrate festivals like Chhath and Holi.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="section animate__animated animate__fadeInUp">
+            <h2>Gallery</h2>
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <a href="../image/koshi-1.jpg" data-lightbox="gallery" data-title="Mount Kanchenjunga">
+                        <img src="../image/koshi-1.jpg" alt="Mount Kanchenjunga" loading="lazy">
+                        <div class="caption">Mount Kanchenjunga</div>
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../image/koshi-2.jpg" data-lightbox="gallery" data-title="Koshi Tappu Wildlife Reserve">
+                        <img src="../image/koshi-2.jpg" alt="Koshi Tappu Wildlife Reserve" loading="lazy">
+                        <div class="caption">Koshi Tappu Wildlife Reserve</div>
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../image/koshi-3.jpg" data-lightbox="gallery" data-title="Baraha Chhetra">
+                        <img src="../image/koshi-3.jpg" alt="Baraha Chhetra" loading="lazy">
+                        <div class="caption">Baraha Chhetra</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer animate__animated animate__fadeInUp">
+        <p>© 2025 Explore Nepal | Crafted with <i class="fas fa-heart"></i> by Travel Enthusiasts</p>
+        <div class="social-icons">
+            <a href="https://facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        // Back to Top Button
+        const backToTopButton = document.getElementById("back-to-top");
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+
+        backToTopButton.addEventListener("click", () => {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        });
+    </script>
+</body>
+</html>
