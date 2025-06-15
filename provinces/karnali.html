@@ -3,346 +3,1137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karnali Province - Land of Natural Beauty</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Karnali Province - Wild West of Nepal | Explore Nepal</title>
+    <meta name="description" content="Discover Karnali Province, Nepal's remote western region featuring Rara Lake, pristine wilderness, and unique cultural heritage.">
+    <meta name="keywords" content="Karnali Province, Nepal tourism, Rara Lake, Shey Phoksundo, western Nepal trekking">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Karnali Province - Wild West of Nepal">
+    <meta property="og:description" content="Explore the pristine wilderness and cultural diversity of Nepal's Karnali Province">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/provinces/karnali.html">
+    <meta property="og:image" content="https://yourdomain.com/image/karnali-social.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-    <link rel="stylesheet" href="../style.css">
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-    <script defer src="../script.js"></script>
+    
+    <!-- Light Gallery CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
     <style>
-        /* Custom Styles for Karnali Province Page */
+        :root {
+            --primary: #2a5c8d;
+            --primary-light: #3a7cb9;
+            --secondary: #e74c3c;
+            --secondary-light: #ff6b5b;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --accent: #f39c12;
+            --text: #333;
+        }
+        
         body {
-            scroll-behavior: smooth;
             font-family: 'Poppins', sans-serif;
-            background: #f9f9f9;
-            color: #333;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light);
+            overflow-x: hidden;
         }
-
-        .section {
-            margin: 40px 0;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--dark);
         }
-
-        .section:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-
-        .section h2 {
-            font-size: 2rem;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #3498db;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        .section ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .section ul li {
-            background: #f9f9f9;
-            margin: 10px 0;
-            padding: 15px;
-            border-left: 5px solid #3498db;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-        }
-
-        .section ul li:hover {
-            background: #e0f7fa;
-        }
-
-        .section ul li strong {
-            color: #e74c3c;
-        }
-
-        .image-gallery {
+        
+        .row {
             display: flex;
-            gap: 15px;
             flex-wrap: wrap;
-            justify-content: center;
+            margin: 0 -15px;
         }
-
-        .gallery-item {
-            flex: 1 1 calc(33.333% - 30px);
+        
+        .col-md-4, .col-md-6 {
+            padding: 0 15px;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .col-md-4 {
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            }
+            .col-md-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+        
+        .mb-4 {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255,255,255,0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Header Enhancements */
+        .province-header {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('../image/karnali-banner.jpg') center/cover;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
             position: relative;
             overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 80px;
         }
-
-        .gallery-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-item .caption {
+        
+        .province-header::before {
+            content: '';
             position: absolute;
             bottom: 0;
             left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            font-size: 0.9rem;
-            transition: opacity 0.3s ease;
-            opacity: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(transparent, var(--light));
+            z-index: 1;
         }
-
-        .gallery-item:hover .caption {
+        
+        .province-header h1 {
+            font-size: 4.5rem;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .province-header p {
+            font-size: 1.8rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .breadcrumb {
+            padding: 1rem 0;
+            background-color: var(--light);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+        
+        /* Section Styling */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        /* Highlight Box */
+        .province-highlight {
+            background: linear-gradient(135deg, rgba(42,92,141,0.1) 0%, rgba(231,76,60,0.1) 100%);
+            border-left: 5px solid var(--primary);
+            padding: 2.5rem;
+            margin: 3rem 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .province-highlight:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .fa-ul {
+            list-style-type: none;
+            padding-left: 2em;
+        }
+        
+        .fa-li {
+            left: -2em;
+            position: absolute;
+            text-align: center;
+            width: 2em;
+            line-height: 1;
+        }
+        
+        /* Weather Widget */
+        .weather-widget {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 1.8rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .weather-widget::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .temp {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+        
+        /* Culture Cards */
+        .culture-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .culture-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .culture-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .culture-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .culture-card-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .culture-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            align-self: flex-start;
+            margin-top: auto;
+        }
+        
+        .btn-outline-primary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* District Table */
+        .table-responsive {
+            overflow-x: auto;
+        }
+        
+        .district-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .district-table th {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        .district-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+        
+        .district-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .district-table tr:hover td {
+            background: rgba(42,92,141,0.05);
+        }
+        
+        /* Ethnic Groups & Festivals */
+        .ethnic-item, .festival-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .ethnic-item:hover, .festival-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .ethnic-item h4, .festival-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+        
+        /* Travel Tips */
+        .tip-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .tip-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            background: rgba(231,76,60,0.1);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        /* Map Container */
+        #province-map {
+            height: 350px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+        
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-grid a {
+            display: block;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 200px;
+        }
+        
+        .gallery-grid a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1;
+        }
+        
+        .gallery-grid a:hover::before {
             opacity: 1;
         }
-
-        .back-button {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 10px 20px;
-            background: #3498db;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-
-        .back-button:hover {
-            background: #2980b9;
+        
+        .gallery-grid a:hover .gallery-overlay {
+            opacity: 1;
         }
-
+        
+        .gallery-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-grid a:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Footer */
         .footer {
-            margin-top: 50px;
-            padding: 20px;
-            background: #2c3e50;
-            color: #fff;
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer ul li a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
             text-align: center;
-            border-top: 5px solid #3498db;
+            line-height: 40px;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s;
         }
-
-        .footer i {
-            color: #e74c3c;
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
         }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
+        
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
         }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-
+        
         /* Back to Top Button */
         #back-to-top {
-            display: none;
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 99;
-            font-size: 18px;
-            border: none;
-            outline: none;
-            background-color: #3498db;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
             color: white;
-            cursor: pointer;
-            padding: 15px;
+            border: none;
             border-radius: 50%;
-            transition: background-color 0.3s ease;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 999;
         }
-
+        
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
         #back-to-top:hover {
-            background-color: #2980b9;
+            background-color: var(--secondary);
+            transform: translateY(-5px);
         }
-
-        /* Lightbox Override */
-        .lightbox-overlay {
-            background: rgba(0, 0, 0, 0.8);
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .province-header h1 {
+                font-size: 3.5rem;
+            }
+            
+            .province-header p {
+                font-size: 1.5rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.5s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
         }
-
-        .lightbox-image {
-            border-radius: 10px;
+        
+        @media (max-width: 768px) {
+            .province-header {
+                height: 60vh;
+            }
+            
+            .province-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .province-header p {
+                font-size: 1.2rem;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+            
+            #province-map {
+                height: 300px;
+            }
         }
-
-        /* Map Section */
-        #map {
-            height: 500px;
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            margin: 40px 0;
+        
+        @media (max-width: 576px) {
+            .province-header {
+                height: 50vh;
+            }
+            
+            .province-header h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="logo">Explore Nepal</div>
-        <ul class="nav-links">
-            <li><a href="../index.html#home">Home</a></li>
-            <li><a href="../index.html#destinations">Destinations</a></li>
-            <li><a href="../index.html#map">Map</a></li>
-            <li><a href="../index.html#contact">Contact</a></li>
-        </ul>
-        <div class="menu-toggle">
-            <i class="fas fa-bars"></i>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-mountain"></i> Explore Nepal
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#destinations">Destinations</a></li>
+                <li><a href="../index.html#map">Map</a></li>
+                <li><a href="../index.html#weather">Weather</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </nav>
 
-    <!-- Header Section -->
-    <header class="header parallax" style="background-image: url('../image/karnali-bg.jpg');">
-        <div class="header-content animate__animated animate__fadeIn">
-            <h1>Karnali Province</h1>
-            <p>Land of Natural Beauty</p>
+    <!-- Province Header -->
+    <header class="province-header">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown">Karnali Province</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">Nepal's Wild Western Frontier</p>
         </div>
     </header>
 
-    <!-- Google Imagery Map Section -->
-    <section class="section animate__animated animate__fadeInUp">
-        <h2>Explore Karnali Province</h2>
-        <iframe
-            id="map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14130.857353934944!2d81.618637!3d29.386255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399a5d7a2e7a7a7a%3A0x9c8b9b9b9b9b9b9b!2sKarnali%20Province%2C%20Nepal!5e0!3m2!1sen!2snp!4v1621234567890!5m2!1sen!2snp"
-            width="100%"
-            height="500"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
-    </section>
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb container">
+        <a href="../index.html">Home</a> &raquo; 
+        <a href="../index.html#destinations">Provinces</a> &raquo; 
+        <span>Karnali</span>
+    </div>
 
-    <!-- Province Details Section -->
-    <section class="province-detail">
-        <!-- Back Button -->
-        <a href="../index.html#destinations" class="back-button animate__animated animate__fadeInLeft">
-            <i class="fas fa-arrow-left"></i> Back to Destinations
-        </a>
-
-        <!-- Geography Section -->
-        <div class="section animate__animated animate__fadeInUp">
-            <h2>Geography</h2>
-            <p>
-                Karnali Province is located in the western part of Nepal and is the largest province in terms of area, covering 27,984 km². It is bordered by Tibet Autonomous Region of China to the north, Sudurpashchim Province to the west, and Lumbini Province to the east. The province is known for its rugged terrain, high mountains, and pristine natural beauty. It is home to the Shey Phoksundo National Park, Rara Lake, and the Karnali River.
-            </p>
-        </div>
-
-        <!-- Districts Section -->
-        <div class="section animate__animated animate__fadeInUp">
-            <h2>Districts</h2>
-            <p>
-                Karnali Province is divided into 10 districts, each with its unique cultural and geographical significance:
-            </p>
-            <ul>
-                <li><strong>Dolpa:</strong> Known for Shey Phoksundo Lake and its unique Tibetan culture.</li>
-                <li><strong>Humla:</strong> A remote district with stunning landscapes and ancient trade routes.</li>
-                <li><strong>Jumla:</strong> Famous for its apples and the historic Sinja Valley.</li>
-                <li><strong>Kalikot:</strong> Known for its natural beauty and cultural heritage.</li>
-                <li><strong>Mugu:</strong> Home to Rara Lake, the largest lake in Nepal.</li>
-                <li><strong>Salyan:</strong> A district with a mix of hills and cultural diversity.</li>
-                <li><strong>Surkhet:</strong> The provincial capital and a hub for trade and commerce.</li>
-                <li><strong>Dailekh:</strong> Known for its historical sites and natural beauty.</li>
-                <li><strong>Jajarkot:</strong> A district with stunning landscapes and cultural heritage.</li>
-                <li><strong>Rukum (West):</strong> Known for its cultural diversity and natural beauty.</li>
-            </ul>
-        </div>
-
-        <!-- Culture Section -->
-        <div class="section animate__animated animate__fadeInUp">
-            <h2>Culture, Castes, and Religions</h2>
-            <p>
-                Karnali Province is a diverse region with a rich cultural heritage. The major ethnic groups include the Thakuri, Chhetri, Magar, and Dalit communities. Each group has its unique traditions, festivals, and religious practices:
-            </p>
-            <ul>
-                <li>
-                    <strong>Thakuri and Chhetri:</strong> Follow Hindu traditions and celebrate festivals like Dashain and Tihar.
-                </li>
-                <li>
-                    <strong>Magar:</strong> Known for their cultural heritage and festivals like Maghe Sankranti.
-                </li>
-                <li>
-                    <strong>Dalit:</strong> Known for their traditional crafts and music.
-                </li>
-            </ul>
-        </div>
-
-        <!-- Gallery Section -->
-        <div class="section animate__animated animate__fadeInUp">
-            <h2>Gallery</h2>
-            <div class="image-gallery">
-                <div class="gallery-item">
-                    <a href="../image/karnali-1.jpg" data-lightbox="gallery" data-title="Rara Lake">
-                        <img src="../image/karnali-1.jpg" alt="Rara Lake" loading="lazy">
-                        <div class="caption">Rara Lake</div>
-                    </a>
+    <main class="container">
+        <!-- Quick Facts Section -->
+        <section class="province-highlight animate__animated animate__fadeIn">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2><i class="fas fa-info-circle" style="color: var(--primary);"></i> Quick Facts</h2>
+                    <ul class="fa-ul">
+                        <li><span class="fa-li"><i class="fas fa-city" style="color: var(--primary);"></i></span><strong>Capital:</strong> Birendranagar</li>
+                        <li><span class="fa-li"><i class="fas fa-ruler-combined" style="color: var(--primary);"></i></span><strong>Area:</strong> 27,984 km²</li>
+                        <li><span class="fa-li"><i class="fas fa-users" style="color: var(--primary);"></i></span><strong>Population:</strong> ~1.6 million</li>
+                        <li><span class="fa-li"><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i></span><strong>Major Cities:</strong> Birendranagar, Manma, Jumla, Simikot</li>
+                        <li><span class="fa-li"><i class="fas fa-language" style="color: var(--primary);"></i></span><strong>Official Language:</strong> Nepali</li>
+                    </ul>
                 </div>
-                <div class="gallery-item">
-                    <a href="../image/karnali-2.jpg" data-lightbox="gallery" data-title="Shey Phoksundo Lake">
-                        <img src="../image/karnali-2.jpg" alt="Shey Phoksundo Lake" loading="lazy">
-                        <div class="caption">Shey Phoksundo Lake</div>
-                    </a>
-                </div>
-                <div class="gallery-item">
-                    <a href="../image/karnali-3.jpg" data-lightbox="gallery" data-title="Sinja Valley">
-                        <img src="../image/karnali-3.jpg" alt="Sinja Valley" loading="lazy">
-                        <div class="caption">Sinja Valley</div>
-                    </a>
+                <div class="col-md-6">
+                    <div class="weather-widget">
+                        <h3><i class="fas fa-cloud-sun"></i> Current Weather</h3>
+                        <div class="weather-info">
+                            <div class="temp">18°C</div>
+                            <div class="condition">Partly Cloudy</div>
+                            <div class="details">
+                                <span><i class="fas fa-tint"></i> 45%</span>
+                                <span><i class="fas fa-wind"></i> 8 km/h</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Geography Section -->
+        <section class="section animate__animated animate__fadeInUp">
+            <h2><i class="fas fa-mountain" style="color: var(--primary); margin-right: 10px;"></i> Geography & Landscape</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Karnali Province is Nepal's largest and most remote province, featuring dramatic landscapes from high Himalayas to deep river valleys:</p>
+                    <ul class="fa-ul">
+                        <li><span class="fa-li"><i class="fas fa-mountain" style="color: var(--primary);"></i></span><strong>Himalayan Region:</strong> Home to Kanjiroba (6,883m) and other spectacular peaks in Dolpa and Humla districts</li>
+                        <li><span class="fa-li"><i class="fas fa-water" style="color: var(--primary);"></i></span><strong>River Valleys:</strong> The Karnali River system with deep gorges and pristine waterways</li>
+                        <li><span class="fa-li"><i class="fas fa-tree" style="color: var(--primary);"></i></span><strong>Protected Areas:</strong> Shey Phoksundo National Park and Rara National Park</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <div id="province-map"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Attractions Section -->
+        <section class="section animate__animated animate__fadeInUp">
+            <h2><i class="fas fa-camera" style="color: var(--primary); margin-right: 10px;"></i> Top Attractions</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="culture-card">
+                        <img src="../image/rara-lake.jpg" alt="Rara Lake" loading="lazy">
+                        <div class="culture-card-content">
+                            <h3>Rara Lake</h3>
+                            <p>Nepal's largest lake at 2,990m elevation, surrounded by pine forests in Rara National Park.</p>
+                            <a href="#" class="btn btn-outline-primary mt-auto">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="culture-card">
+                        <img src="../image/phoksundo.jpg" alt="Shey Phoksundo Lake" loading="lazy">
+                        <div class="culture-card-content">
+                            <h3>Shey Phoksundo Lake</h3>
+                            <p>Deep blue alpine lake in Dolpa district, sacred to Bon and Buddhist practitioners.</p>
+                            <a href="#" class="btn btn-outline-primary mt-auto">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="culture-card">
+                        <img src="../image/simikot.jpg" alt="Simikot and Limi Valley" loading="lazy">
+                        <div class="culture-card-content">
+                            <h3>Simikot & Limi Valley</h3>
+                            <p>Gateway to Mount Kailash with Tibetan-influenced culture in remote Humla district.</p>
+                            <a href="#" class="btn btn-outline-primary mt-auto">Explore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Districts Section -->
+        <section class="section animate__animated animate__fadeInUp">
+            <h2><i class="fas fa-map-marked-alt" style="color: var(--primary); margin-right: 10px;"></i> Districts of Karnali</h2>
+            <div class="table-responsive">
+                <table class="district-table">
+                    <thead>
+                        <tr>
+                            <th>District</th>
+                            <th>Headquarters</th>
+                            <th>Area (km²)</th>
+                            <th>Major Attractions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fas fa-city" style="color: var(--primary); margin-right: 5px;"></i> Dailekh</td>
+                            <td>Narayan</td>
+                            <td>1,502</td>
+                            <td>Dullu archaeological site, Bhedabhar Temple</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-city" style="color: var(--primary); margin-right: 5px;"></i> Dolpa</td>
+                            <td>Dunai</td>
+                            <td>7,889</td>
+                            <td>Shey Phoksundo Lake, Shey Gompa</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-city" style="color: var(--primary); margin-right: 5px;"></i> Humla</td>
+                            <td>Simikot</td>
+                            <td>5,655</td>
+                            <td>Limi Valley, Mount Kailash route</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-city" style="color: var(--primary); margin-right: 5px;"></i> Jajarkot</td>
+                            <td>Khalanga</td>
+                            <td>2,230</td>
+                            <td>Kankrevihar Temple, Nalgad River</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-city" style="color: var(--primary); margin-right: 5px;"></i> Jumla</td>
+                            <td>Chandannath</td>
+                            <td>2,531</td>
+                            <td>Rara Lake, Sinja Valley</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-city" style="color: var(--primary); margin-right: 5px;"></i> Kalikot</td>
+                            <td>Manma</td>
+                            <td>1,741</td>
+                            <td>Khaptad Chhanna Trekking Route</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-city" style="color: var(--primary); margin-right: 5px;"></i> Mugu</td>
+                            <td>Gamgadhi</td>
+                            <td>3,535</td>
+                            <td>Rara National Park, Mugu Karnali River</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-city" style="color: var(--primary); margin-right: 5px;"></i> Salyan</td>
+                            <td>Salyan</td>
+                            <td>1,462</td>
+                            <td>Chhayachhetra Temple, Babai River</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-city" style="color: var(--primary); margin-right: 5px;"></i> Surkhet</td>
+                            <td>Birendranagar</td>
+                            <td>2,451</td>
+                            <td>Birendra Lake, Kakrebihar Temple</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-city" style="color: var(--primary); margin-right: 5px;"></i> Western Rukum</td>
+                            <td>Musikot</td>
+                            <td>1,213</td>
+                            <td>Putha Hiunchuli base camp</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Cultural Diversity Section -->
+        <section class="section animate__animated animate__fadeInUp">
+            <h2><i class="fas fa-users" style="color: var(--primary); margin-right: 10px;"></i> Cultural Diversity</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3><i class="fas fa-people-group" style="color: var(--primary); margin-right: 10px;"></i> Ethnic Groups</h3>
+                    <div class="ethnic-groups">
+                        <div class="ethnic-item">
+                            <h4><i class="fas fa-praying-hands" style="color: var(--secondary); margin-right: 8px;"></i> Thakuri</h4>
+                            <p>Historically ruling class with distinct cultural traditions in western Nepal.</p>
+                        </div>
+                        <div class="ethnic-item">
+                            <h4><i class="fas fa-drum" style="color: var(--secondary); margin-right: 8px;"></i> Magar</h4>
+                            <p>Indigenous group with rich oral traditions and unique cultural practices.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3><i class="fas fa-calendar-alt" style="color: var(--primary); margin-right: 10px;"></i> Major Festivals</h3>
+                    <div class="festival-list">
+                        <div class="festival-item">
+                            <h4><i class="fas fa-mask" style="color: var(--secondary); margin-right: 8px;"></i> Gaura Parva</h4>
+                            <p>Important festival in far-western Nepal celebrating marital bliss and prosperity.</p>
+                        </div>
+                        <div class="festival-item">
+                            <h4><i class="fas fa-mountain" style="color: var(--secondary); margin-right: 8px;"></i> Yartung</h4>
+                            <p>Horse racing festival celebrated in Upper Dolpa and Mustang regions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery Section -->
+        <section class="section animate__animated animate__fadeInUp">
+            <h2><i class="fas fa-camera" style="color: var(--primary); margin-right: 10px;"></i> Photo Gallery</h2>
+            <div id="province-gallery" class="gallery-grid">
+                <a href="../image/karnali-gallery1.jpg" data-sub-html="Rara Lake in autumn">
+                    <img src="../image/karnali-gallery1-thumb.jpg" alt="Rara Lake">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </a>
+                <a href="../image/karnali-gallery2.jpg" data-sub-html="Shey Phoksundo Lake">
+                    <img src="../image/karnali-gallery2-thumb.jpg" alt="Shey Phoksundo Lake">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </a>
+                <a href="../image/karnali-gallery3.jpg" data-sub-html="Dolpa landscape">
+                    <img src="../image/karnali-gallery3-thumb.jpg" alt="Dolpa landscape">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </a>
+                <a href="../image/karnali-gallery4.jpg" data-sub-html="Simikot village">
+                    <img src="../image/karnali-gallery4-thumb.jpg" alt="Simikot village">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </a>
+                <a href="../image/karnali-gallery5.jpg" data-sub-html="Thakuri cultural dance">
+                    <img src="../image/karnali-gallery5-thumb.jpg" alt="Thakuri cultural dance">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </a>
+                <a href="../image/karnali-gallery6.jpg" data-sub-html="Karnali River">
+                    <img src="../image/karnali-gallery6-thumb.jpg" alt="Karnali River">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Travel Tips Section -->
+        <section class="section animate__animated animate__fadeInUp">
+            <h2><i class="fas fa-suitcase-rolling" style="color: var(--primary); margin-right: 10px;"></i> Travel Tips</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="tip-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Best Time to Visit</h3>
+                        <p>April-June and September-October offer the best weather for trekking and sightseeing.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="tip-card">
+                        <i class="fas fa-utensils"></i>
+                        <h3>Must-Try Foods</h3>
+                        <p>Local buckwheat dishes, Jumla Marsi rice, and yak meat specialties.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="tip-card">
+                        <i class="fas fa-hiking"></i>
+                        <h3>Top Activities</h3>
+                        <p>Trekking to Rara Lake or Shey Phoksundo, cultural tours in Dolpa, and river expeditions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="footer animate__animated animate__fadeInUp">
-        <p>© 2025 Explore Nepal | Crafted with <i class="fas fa-heart"></i> by Travel Enthusiasts</p>
-        <div class="social-icons">
-            <a href="https://facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3>Explore Nepal</h3>
+                    <p>Discover the majestic beauty and rich cultural heritage of Nepal's diverse provinces.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#destinations">Provinces</a></li>
+                        <li><a href="../index.html#map">Interactive Map</a></li>
+                        <li><a href="../index.html#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Explore Nepal. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+    <button id="back-to-top" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Back to Top Button
-        const backToTopButton = document.getElementById("back-to-top");
+        // Initialize LightGallery
+        lightGallery(document.getElementById('province-gallery'), {
+            selector: 'a',
+            download: true,
+            counter: true,
+            zoom: true,
+            actualSize: true
+        });
 
-        window.onscroll = function() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                backToTopButton.style.display = "block";
-            } else {
-                backToTopButton.style.display = "none";
+        // Initialize Map
+        const map = L.map('province-map').setView([29.0, 82.5], 7);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add custom icons
+        const cityIcon = L.divIcon({
+            className: 'custom-icon',
+            html: '<i class="fas fa-city"></i>',
+            iconSize: [30, 30],
+            iconAnchor: [15, 30]
+        });
+
+        const mountainIcon = L.divIcon({
+            className: 'custom-icon',
+            html: '<i class="fas fa-mountain"></i>',
+            iconSize: [30, 30],
+            iconAnchor: [15, 30]
+        });
+
+        const parkIcon = L.divIcon({
+            className: 'custom-icon',
+            html: '<i class="fas fa-tree"></i>',
+            iconSize: [30, 30],
+            iconAnchor: [15, 30]
+        });
+
+        const lakeIcon = L.divIcon({
+            className: 'custom-icon',
+            html: '<i class="fas fa-water"></i>',
+            iconSize: [30, 30],
+            iconAnchor: [15, 30]
+        });
+
+        // Add markers for major attractions
+        const attractions = [
+            {
+                name: "Rara Lake", 
+                coords: [29.5200, 82.0900], 
+                icon: lakeIcon,
+                description: "Nepal's largest lake in Rara National Park"
+            },
+            {
+                name: "Shey Phoksundo Lake", 
+                coords: [29.1869, 82.9325], 
+                icon: lakeIcon,
+                description: "Deep blue alpine lake in Dolpa district"
+            },
+            {
+                name: "Birendranagar", 
+                coords: [28.6000, 81.6333], 
+                icon: cityIcon,
+                description: "Capital city of Karnali Province"
+            },
+            {
+                name: "Simikot", 
+                coords: [29.9711, 81.8189], 
+                icon: mountainIcon,
+                description: "Gateway to Mount Kailash in Humla district"
+            },
+            {
+                name: "Kanjiroba Himal", 
+                coords: [29.3000, 82.8000], 
+                icon: mountainIcon,
+                description: "Sacred mountain in Dolpa district"
             }
-        };
+        ];
 
-        backToTopButton.addEventListener("click", () => {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        attractions.forEach(attr => {
+            L.marker(attr.coords, {icon: attr.icon})
+                .addTo(map)
+                .bindPopup(`<b>${attr.name}</b><br>${attr.description}`);
+        });
+
+        // Add province boundary
+        const provinceBounds = [
+            [28.0, 80.5], // Southwest coordinates
+            [30.5, 83.5]   // Northeast coordinates
+        ];
+        L.rectangle(provinceBounds, {
+            color: "#2a5c8d",
+            weight: 2,
+            fillOpacity: 0.1
+        }).addTo(map);
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
     </script>
 </body>
