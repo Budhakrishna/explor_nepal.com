@@ -243,6 +243,7 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
         }
         
         .card:hover {
@@ -319,6 +320,97 @@
         .explore-button:hover {
             background-color: var(--secondary);
             transform: translateY(-3px);
+        }
+        
+        /* Image Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 2000;
+            overflow: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .image-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
+        
+        .modal-caption {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            max-width: 80%;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: var(--accent);
+        }
+        
+        .modal-controls {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .modal-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .modal-btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+        
+        .modal-btn i {
+            font-size: 18px;
         }
         
         /* Provinces Section */
@@ -675,6 +767,21 @@
             .contact-newsletter-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .modal-close {
+                top: -30px;
+                right: 10px;
+                font-size: 30px;
+            }
+            
+            .modal-content {
+                max-width: 95%;
+            }
+            
+            .modal-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -771,70 +878,70 @@
             <h2 class="section-title">Top Destinations</h2>
             <div class="gallery-grid">
                 <!-- Talcha Airport -->
-                <div class="card">
+                <div class="card" data-image="image/20180906_095331.jpg" data-title="Talcha Airport" data-description="Situated at 2735 meters in Mugu district, this airport is the gateway to Rara Lake. Experience breathtaking Himalayan views during landing.">
                     <div class="card-image">
                         <img src="image/20180906_095331.jpg" alt="Talcha Airport" loading="lazy">
                         <div class="card-overlay">
                             <div class="overlay-content">
                                 <h3><i class="fas fa-mountain"></i> Talcha Airport</h3>
                                 <p>Situated at 2735 meters in Mugu district, this airport is the gateway to Rara Lake. Experience breathtaking Himalayan views during landing.</p>
-                                <span class="explore-button">Explore More</span>
+                                <span class="explore-button">View Fullscreen</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Kathmandu Valley -->
-                <div class="card">
+                <div class="card" data-image="image/20190124_174242.jpg" data-title="Kathmandu Valley" data-description="Explore ancient temples and UNESCO sites in Nepal's cultural heart. Discover spiritual heritage at Swayambhunath and Pashupatinath.">
                     <div class="card-image">
                         <img src="image/20190124_174242.jpg" alt="Kathmandu Valley" loading="lazy">
                         <div class="card-overlay">
                             <div class="overlay-content">
                                 <h3><i class="fas fa-university"></i> Kathmandu Valley</h3>
                                 <p>Explore ancient temples and UNESCO sites in Nepal's cultural heart. Discover spiritual heritage at Swayambhunath and Pashupatinath.</p>
-                                <span class="explore-button">Explore More</span>
+                                <span class="explore-button">View Fullscreen</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Boudha Stupa -->
-                <div class="card">
+                <div class="card" data-image="image/IMG_20200222_144133.jpg" data-title="Boudha Stupa" data-description="One of the largest spherical stupas in Nepal, a center of Tibetan Buddhism with mesmerizing architecture and spiritual ambiance.">
                     <div class="card-image">
                         <img src="image/IMG_20200222_144133.jpg" alt="Boudha Stupa" loading="lazy">
                         <div class="card-overlay">
                             <div class="overlay-content">
                                 <h3><i class="fas fa-peace"></i> Boudha Stupa</h3>
                                 <p>One of the largest spherical stupas in Nepal, a center of Tibetan Buddhism with mesmerizing architecture and spiritual ambiance.</p>
-                                <span class="explore-button">Explore More</span>
+                                <span class="explore-button">View Fullscreen</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Mugu District -->
-                <div class="card">
+                <div class="card" data-image="image/20180903_101734.jpg" data-title="Mugu District" data-description="Remote wilderness area featuring Nepal's largest lake (Rara) and pristine Himalayan landscapes perfect for adventure seekers.">
                     <div class="card-image">
                         <img src="image/20180903_101734.jpg" alt="Mugu District" loading="lazy">
                         <div class="card-overlay">
                             <div class="overlay-content">
                                 <h3><i class="fas fa-hiking"></i> Mugu District</h3>
                                 <p>Remote wilderness area featuring Nepal's largest lake (Rara) and pristine Himalayan landscapes perfect for adventure seekers.</p>
-                                <span class="explore-button">Explore More</span>
+                                <span class="explore-button">View Fullscreen</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Rara Lake -->
-                <div class="card">
+                <div class="card" data-image="image/maxresdefault.jpg" data-title="Rara Lake" data-description="Crystal-clear alpine lake surrounded by pine forests and snow-capped peaks. Ideal for trekking and nature photography.">
                     <div class="card-image">
                         <img src="image/maxresdefault.jpg" alt="Rara Lake" loading="lazy">
                         <div class="card-overlay">
                             <div class="overlay-content">
                                 <h3><i class="fas fa-lake"></i> Rara Lake</h3>
                                 <p>Crystal-clear alpine lake surrounded by pine forests and snow-capped peaks. Ideal for trekking and nature photography.</p>
-                                <span class="explore-button">Explore More</span>
+                                <span class="explore-button">View Fullscreen</span>
                             </div>
                         </div>
                     </div>
@@ -1058,6 +1165,19 @@
 
     <!-- Back to Top Button -->
     <button id="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+    
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <div class="modal-caption" id="modalCaption"></div>
+            <div class="modal-controls">
+                <button class="modal-btn" id="downloadBtn"><i class="fas fa-download"></i> Download</button>
+                <button class="modal-btn" id="shareBtn"><i class="fas fa-share-alt"></i> Share</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Mobile Menu Toggle
@@ -1167,6 +1287,83 @@
                 bar.style.width = width;
             });
         }
+        
+        // Image Modal functionality
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const closeBtn = document.querySelector('.modal-close');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const shareBtn = document.getElementById('shareBtn');
+        
+        // Open modal when clicking on any card
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function() {
+                const imgSrc = this.getAttribute('data-image');
+                const title = this.getAttribute('data-title');
+                const description = this.getAttribute('data-description');
+                
+                modalImg.src = imgSrc;
+                modalImg.alt = title;
+                modalCaption.innerHTML = `<h3>${title}</h3><p>${description}</p>`;
+                
+                // Set download attribute
+                downloadBtn.setAttribute('download', title.toLowerCase().replace(/\s+/g, '-') + '.jpg');
+                downloadBtn.setAttribute('href', imgSrc);
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Close modal
+        closeBtn.addEventListener('click', function() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close when clicking outside image
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Download functionality
+        downloadBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const link = document.createElement('a');
+            link.href = modalImg.src;
+            link.download = this.getAttribute('download');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show confirmation
+            const originalText = downloadBtn.innerHTML;
+            downloadBtn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+            setTimeout(() => {
+                downloadBtn.innerHTML = originalText;
+            }, 2000);
+        });
+        
+        // Share functionality
+        shareBtn.addEventListener('click', function() {
+            if (navigator.share) {
+                navigator.share({
+                    title: modalCaption.querySelector('h3').textContent,
+                    text: modalCaption.querySelector('p').textContent,
+                    url: window.location.href
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const shareUrl = `mailto:?subject=${encodeURIComponent(modalCaption.querySelector('h3').textContent)}&body=${encodeURIComponent(modalCaption.querySelector('p').textContent + '\n\n' + window.location.href)}`;
+                window.location.href = shareUrl;
+            }
+        });
 
         // Initialize everything when page loads
         window.addEventListener('load', function() {
